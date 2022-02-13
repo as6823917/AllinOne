@@ -85,8 +85,8 @@ async def wait(chat_id: int):
         Last_Time[chat_id] = time()
 
 
-@bot.on_message(filters.command("start"))
-async def start(_, msg: Message):
+@bot.on_message(filters.command("startlink"))
+async def startllink(_, msg: Message):
     buttons = [[InlineKeyboardButton(Strings.dev_channel, url=f'https://t.me/{Config.Dev_Channel}')]]
     if Config.Bot_Channel:
         buttons.append([InlineKeyboardButton(Strings.bot_channel, url=f'https://t.me/{Config.Bot_Channel}')])
