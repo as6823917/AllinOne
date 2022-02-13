@@ -2,8 +2,9 @@ import os
 import logging
 import random
 import asyncio
+from os import environ
+from pyrogram import Client, filters, idle
 from Script import script
-from pyrogram import Client, filters
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
@@ -17,7 +18,8 @@ import base64
 logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
-
+START_MSGS = "<b>Hai {},\nI'm a simple bot to delete group messages after a specific time</b>"
+ 
 @Client.on_message(filters.command("start") & filters.incoming & ~filters.edited)
 async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
@@ -529,7 +531,7 @@ async def deletefun(user, message):
           return
        else:
           await asyncio.sleep(TIME)
-          await Bot.delete_messages(message.chat.id, message.message_id)
+          await Client.delete_messages(message.chat.id, message.message_id)
     except Exception as e:
        print(e)
        
