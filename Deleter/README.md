@@ -1,37 +1,32 @@
-# Auto-Delete
-Simple Telegram UserBot To Delete Group Messages After Specific Time.
-Based on Pyrogram
+# AutoDelete-V2
+Delete group messages after a specific time
 
-## Deploy on Heroku
+## Variables
+1. `API_ID` : Get from [my.telegram.org](https://my.telegram.org/)
+2. `API_HASH` : Get from [my.telegram.org](https://my.telegram.org)
+3. `BOT_TOKEN` : Your telegram bot token from [@BotFather](https://t.me/BotFather)
+4. `SESSION` : Generate from here [![GenerateStringName](https://img.shields.io/badge/repl.it-generateStringName-yellowgreen)](https://repl.it/@subinps/getStringName)
+5. `GROUPS` : ID of Groups (seperate by spaces)
+6. `ADMINS` : ID of Admins, messages from admins will not delete (seperate by spaces)
+7. `TIME` : Time in seconds
+
+### Make sure:
+- Bot is admin in Groups with delete permission
+- Account used to create SESSION is a member in Groups
+
+## Deploy in Heroku
  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-- DON'T FORGET TO TURN ON DYNOS IN HEROKU
+
 ## Deploy in your VPS
 
 ```sh
-git clone https://github.com/Arun-TG/AutoDelete
-cd AutoDelete
+git clone https://github.com/Arun-TG/AutoDelete-V2
+cd AutoDelete-V2
 pip3 install -r requirements.txt
 # <Create Variables appropriately>
-python3 sam.py
+python3 bot.py
 ```
 
-
-### Variables:
-1. `API_ID` : Get From [my.telegram.org](https://my.telegram.org/)
-2. `API_HASH` : Get from [my.telegram.org](https://my.telegram.org)
-3. `ADMINS` : ID of Admins (Userbot will not delete Messages of Admins)
-4. `SESSION` : Generate From here [![GenerateStringName](https://img.shields.io/badge/repl.it-generateStringName-yellowgreen)](https://repl.it/@subinps/getStringName)
-5. `GROUPS` : ID of Groups where the userbot works.
-6. `TIME` : Time Duration for deletion
-
-#
-- In [Main](https://github.com/Arun-TG/AutoDelete/tree/main) Branch UserBot will delete all message of Users & Bots.
-- If you want to delete Messages Sent By Users Only Deploy [Second](https://github.com/Arun-TG/AutoDelete/tree/Second) Branch 
-
-# Credits
+### Credits
 - [Pyrogram](https://github.com/pyrogram/pyrogram)
-- [Abir Hasan](https://github.com/AbirHasan2005)
-- [SUBIN](https://github.com/subinps)
-- [Me](https://t.me/Arun_TG)
-
-* Inspiration➔ [Ten Seconds Delete](https://t.me/TenSecBot)
+- [Arun](https://t.me/Arun_TG)
