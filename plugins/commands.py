@@ -517,3 +517,19 @@ async def save_template(client, message):
     template = message.text.split(" ", 1)[1]
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
+
+@Client.on_message(filters.command('startdel') & filters.private)
+async def start(bot, message):
+    await message.reply(START_MSGS.format(message.from_user.mention))
+
+@Client.on_message(filters.group & filters.chat(GROUPS) & filters.all)
+async def deletefun(user, message):
+    try:
+       if message.from_user.id in ADMINS:
+          return
+       else:
+          await asyncio.sleep(TIME)
+          await Bot.delete_messages(message.chat.id, message.message_id)
+    except Exception as e:
+       print(e)
+       
