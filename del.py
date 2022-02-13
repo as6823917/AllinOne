@@ -1,7 +1,7 @@
 import asyncio
 from os import environ
 from pyrogram import Client, filters, idle
-
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, TIME
 
 GROUPS = []
 for grp in environ.get("GROUPS").split():
