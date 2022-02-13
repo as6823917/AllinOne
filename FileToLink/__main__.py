@@ -20,7 +20,7 @@ from FileToLink.utils import participant
 Last_Time = {}
 
 
-@bot.on_message(filters.media & filters.private & filters.incoming)
+@Client.on_message(filters.media & filters.private & filters.incoming)
 async def main(_, msg: Message):
     await wait(msg.chat.id)
 
@@ -35,7 +35,7 @@ async def main(_, msg: Message):
         # If the file already exist on the server
         if not worker.parts[0]:
             # If first part of the file is not downloaded yet, send Generating link message
-            gen_msg = await bot.send_message(msg.chat.id, Strings.generating_link,
+            gen_msg = await Client.send_message(msg.chat.id, Strings.generating_link,
                                              reply_to_message_id=msg.message_id)
         else:
             gen_msg = None
@@ -85,8 +85,8 @@ async def wait(chat_id: int):
         Last_Time[chat_id] = time()
 
 
-@bot.on_message(filters.command("start"))
-async def start(_, msg: Message):
+@Client.on_message(filters.command("filetolink"))
+async def filelink(_, msg: Message):
     buttons = [[InlineKeyboardButton(Strings.dev_channel, url=f'https://t.me/{Config.Dev_Channel}')]]
     if Config.Bot_Channel:
         buttons.append([InlineKeyboardButton(Strings.bot_channel, url=f'https://t.me/{Config.Bot_Channel}')])
@@ -111,14 +111,14 @@ async def startup():
         await bot.start()
     except (AuthKeyDuplicated, AuthKeyInvalid, SessionRevoked, SessionExpired):
         bot.storage = MemoryStorage(":memory:")
-        await bot.start()
+        await Client.start()
     Config.Bot_UserName = (await bot.get_me()).username
 
 
 if __name__ == '__main__':
-    bot.loop.run_until_complete(startup())
+    Client.loop.run_until_complete(startup())
     app_config = HypercornConfig()
     app_config._bind = [f'0.0.0.0:{Config.Port}']
-    bot.loop.create_task(serve(app, app_config, shutdown_trigger=lambda: Future()))
-    bot.loop.create_task(keep_awake())
+    Client.loop.create_task(serve(app, app_config, shutdown_trigger=lambda: Future()))
+    Client.loop.create_task(keep_awake())
     idle()
