@@ -17,8 +17,8 @@
       "delete",
       "bot"
     ],
-    "website": "https://github.com/EvamariaTG/EvaMaria",
-    "repository": "https://github.com/EvamariaTG/EvaMaria",
+    "website": "https://github.com/as6823917/AllinOne",
+    "repository": "https://github.com/as6823917/AllinOne",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
@@ -66,7 +66,7 @@
         },
         "SESSION":{
             "description": "Pyrogram session generated from the link in Readme",
-             "required": true
+             "required": false
        }, 
         "TIME": {
              "description": "Time in seconds",
