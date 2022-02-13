@@ -18,9 +18,6 @@ import base64
 logger = logging.getLogger(__name__)
 
 
-GROUPS = []
-for grp in environ.get("GROUPS").split():
-    GROUPS.append(int(grp))
 
 BATCH_FILES = {}
 START_MSGS = "<b>Hai {},\nI'm a simple bot to delete group messages after a specific time</b>"
