@@ -9,8 +9,6 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import TIME
-from info import GROUPS
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp
 from database.connections_mdb import active_connection
@@ -524,18 +522,5 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
-@Client.on_message(filters.command('startdel') & filters.private)
-async def start(bot, message):
-    await message.reply(START_MSGS.format(message.from_user.mention))
 
-@Client.on_message(filters.group & filters.chat(GROUPS) & filters.all)
-async def deletefun(user, message):
-    try:
-       if message.from_user.id in ADMINS:
-          return
-       else:
-          await asyncio.sleep(TIME)
-          await Client.delete_messages(message.chat.id, message.message_id)
-    except Exception as e:
-       print(e)
        
