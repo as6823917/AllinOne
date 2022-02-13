@@ -21,7 +21,7 @@ User = Client(session_name=SESSION,
 
 
 @Client.on_message(filters.command('startdel') & filters.private)
-async def start(bot, message):
+async def startfun(bot, message):
     await message.reply(START_MSG.format(message.from_user.mention))
 
 @User.on_message(filters.chat(GROUPS))
@@ -35,14 +35,3 @@ async def deletefun(user, message):
     except Exception as e:
        print(e)
        
-User.start()
-print("User Started!")
-Client.start()
-print("Bot Started!")
-
-idle()
-
-User.stop()
-print("User Stopped!")
-Client.stop()
-print("Bot Stopped!")
